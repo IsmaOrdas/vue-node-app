@@ -7,8 +7,8 @@
         <router-link to="/profile">Profile</router-link>
       </template>
       <template v-else>
-        <router-link to="/login">Login</router-link> |
-        <router-link to="/register">Register</router-link>
+        <router-link to="/signin">Sign In</router-link> |
+        <router-link to="/signup">Sign Up</router-link>
       </template>
     </div>
   </div>
