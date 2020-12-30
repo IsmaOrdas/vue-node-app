@@ -14,6 +14,9 @@ export default {
     if (localStorage.getItem('_token')) {
       this.$store.commit('loginSuccess', JSON.stringify(localStorage.getItem('_user')))
     }
+  },
+  created () {
+
   }
 }
 </script>
