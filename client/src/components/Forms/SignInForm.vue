@@ -4,11 +4,11 @@
     <form @submit.prevent="dispatchLogin" action="" method="post">
       <div class="mb-8">
         <label class="label" for="username">Usuario</label>
-        <input v-model='form.username' type="text" name="username" id="" class="input">
+        <input v-model='form.username' type="text" name="username" id="username" class="input">
       </div>
       <div class="mb-8">
         <label class="label" for="password">Contraseña</label>
-        <input v-model='form.password' type="password" name="password" id="" class="input">
+        <input v-model='form.password' type="password" name="password" id="password" class="input">
       </div>
       <div>
         <button class="btn">Entrar</button>

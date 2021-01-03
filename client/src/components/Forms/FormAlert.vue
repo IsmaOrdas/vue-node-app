@@ -13,7 +13,7 @@ export default {
       type: String,
       required: false,
       validator: propType => {
-        return Constants.WARNING_TYPES.includes(propType);
+        return Constants.WARNING_TYPES.includes(propType.toUpperCase());
       }
     },
     show: {
