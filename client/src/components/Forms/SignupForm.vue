@@ -1,36 +1,22 @@
 <template>
   <div class="library__register">
-    <alert-box :show="showAlert" type='error'></alert-box>
-    <form @submit.prevent="dispatchRegisterUser" action="" method="post">
-      <div class="mb-8">
-        <label class="label" for="username">Usuario</label>
-        <input v-model='form.username' type="text" name="username" id="" class="input">
-      </div>
-      <div class="mb-8">
-        <label class="label" for="password">Contraseña</label>
-        <input v-model='form.password' type="password" name="password" autocomplete="off" id="" class="input">
-      </div>
-      <div>
-        <button class="btn">Entrar</button>
-      </div>
-    </form>
+    <form-alert :show="showAlert" type='error'>error api</form-alert>
+    <user-form @formSubmitted="dispatchRegisterUser"></user-form>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import AlertBox from '@/components/AlertBox'
+import UserForm from '@/components/Forms/UserForm';
+import FormAlert from '@/components/Forms/FormAlert'
 export default {
-  name: "SignupForm.vue",
+  name: "SignupForm",
   components: {
-    AlertBox
+    UserForm,
+    FormAlert
   },
   data () {
     return {
-      form: {
-        username: '',
-        password: ''
-      },
       showAlert: false
     }
   },
@@ -38,8 +24,9 @@ export default {
     ...mapActions([
       'registration'
     ]),
-    async dispatchRegisterUser () {
-      const registered = await this.registration({...this.form});
+    async dispatchRegisterUser (formData) {
+      const registered = await this.registration({...formData});
+
       if (!registered) {
         this.showAlert = true;
         return false;
@@ -48,6 +35,7 @@ export default {
       if (this.showAlert === true) {
         this.showAlert = false;
       }
+
       localStorage.setItem('_token', registered.data.token)
       localStorage.setItem('_user', JSON.stringify(registered.data.user))
       this.$router.push('/')

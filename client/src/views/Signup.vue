@@ -1,10 +1,17 @@
 <template>
-  <p>Sign Up</p>
+  <div class="app-signup center-all">
+    <signup-form></signup-form>
+  </div>
+
 </template>
 
 <script>
+import SignupForm from "@/components/Forms/SignupForm"
 export default {
-  name: "SignUp"
+  name: "SignUp",
+  components: {
+    SignupForm
+  }
 }
 </script>
 

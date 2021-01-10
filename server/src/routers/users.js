@@ -17,6 +17,11 @@ router.get('/users/me', auth, async (req, res) => {
 })
 
 router.post('/users', async (req, res) => {
+  console.log(User.checkUserExists(req.body.username))
+  if (await User.checkUserExists(req.body.username)) {
+    res.status(400).send('username already used.');
+  }
+
   const user = new User(req.body);
 
   try {

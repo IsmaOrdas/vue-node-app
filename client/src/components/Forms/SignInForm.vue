@@ -1,36 +1,22 @@
 <template>
   <div class="signin-form">
     <form-alert :show="showAlert" type='error'></form-alert>
-    <form @submit.prevent="dispatchLogin" action="" method="post">
-      <div class="mb-8">
-        <label class="label" for="username">Usuario</label>
-        <input v-model='form.username' type="text" name="username" id="username" class="input">
-      </div>
-      <div class="mb-8">
-        <label class="label" for="password">Contraseña</label>
-        <input v-model='form.password' type="password" name="password" id="password" class="input">
-      </div>
-      <div>
-        <button class="btn">Entrar</button>
-      </div>
-    </form>
+    <user-form @formSubmitted="dispatchLogin"></user-form>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import UserForm from '@/components/Forms/UserForm';
 import FormAlert from '@/components/Forms/FormAlert'
 export default {
   name: "SigninForm",
   components: {
-    FormAlert
+    FormAlert,
+    UserForm
   },
   data () {
     return {
-      form: {
-        username: '',
-        password: ''
-      },
       showAlert: false
     }
   },

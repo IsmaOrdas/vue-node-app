@@ -1,6 +1,6 @@
 <template>
 <div class="form-alert" :class='cssClass'>
-  <p>error</p>
+  <slot></slot>
 </div>
 </template>
 
@@ -25,13 +25,9 @@ export default {
     cssClass () {
       return {
         'hidden': !this.show,
-        'rounded': true,
-        'text-sm': true,
-        'mb-4': true,
-        'p-2': true,
-        'bg-red-400': this.type === 'ERROR',
-        'bg-green-400': this.type === 'SUCCESS',
-        'bg-yellow-400': this.type === 'WARNING'
+        'form-alert--error': this.type === 'error',
+        'form-alert--warn': this.type === 'warning',
+        'form-alert--success': this.type === 'success'
       }
 
     }
@@ -40,5 +36,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.form-alert {
+  @apply rounded text-sm mb-4 p-2;
 
+  &.form-alert--error {
+    @apply bg-red-400 text-white;
+  }
+
+  &.form-alert--warn {
+    @apply bg-yellow-200 text-black;
+  }
+
+  &.form-alert--success {
+    @apply bg-green-400 text-white;
+  }
+
+}
 </style>

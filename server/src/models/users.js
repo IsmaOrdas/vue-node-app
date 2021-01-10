@@ -77,6 +77,14 @@ userSchema.statics.findByCredentials = async (username, password) => {
   return user
 }
 
+userSchema.statics.checkUserExists = async (username, next) => {
+  const user = await User.findOne({ username });
+  console.log(user);
+  return user ? true : false;
+
+  next();
+}
+
 userSchema.pre('remove', async function (next) {
   const user = this
   await Book.deleteMany({ owner: user._id })
